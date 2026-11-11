@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C++ Duo Light - Interactive Learning</title>
+
+  <!-- Google Font: Nunito for Duo Light style -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Top Navigation Header -->
+    <header class="header-bar">
+      <!-- Curriculum Modules Drawer Button -->
+      <button id="moduleDrawerBtn" class="icon-btn" type="button" title="View Curriculum Modules" aria-label="View Modules">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+      </button>
+
+      <!-- Dynamic Progress Bar -->
+      <div class="progress-track" title="Module Progress">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+
+      <!-- Stats: Streak & Hearts (No Emojis) -->
+      <div class="stats-group">
+        <!-- Streak Indicator with SVG Flame -->
+        <div class="stat-pill streak" title="Day Streak">
+          <svg viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.61 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM12 20c-3.31 0-6-2.69-6-6 0-1.53.5-3.05 1.4-4.22.42 2.3 2.37 4.07 4.75 4.07.61 0 1.21-.12 1.76-.36.06.49.09 1 .09 1.51 0 2.76-2.24 5-5 5z"/></svg>
+          <span id="streakCount">12</span>
+        </div>
+
+        <!-- Hearts Indicator with SVG Heart -->
+        <div class="stat-pill heart" title="Remaining Hearts">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span id="heartsCount">5</span>
+        </div>
+
+        <!-- Sound Toggle Button -->
+        <button id="soundToggleBtn" class="icon-btn" type="button" title="Toggle Sound" aria-label="Toggle Sound">
+          <span id="soundIcon">
+            <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+          </span>
+        </button>
+
+        <!-- Reset Progress Button -->
+        <button id="resetBtn" class="icon-btn" type="button" title="Reset Learning Progress" aria-label="Reset Progress">
+          <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Module & Card Step Banner -->
+    <div class="module-info-bar">
+      <div id="moduleBadge" class="module-title-badge" title="Click to switch modules">Module 1: C++ Basics & Console Output</div>
+      <div id="stepBadge" class="step-indicator">Card 1 of 4</div>
+    </div>
+
+    <!-- Active Learning Card View -->
+    <main id="cardView" class="lesson-card">
+      <!-- Plain English Instruction -->
+      <h1 id="instructionTitle" class="instruction-title">Direct the text into the output stream.</h1>
+
+      <!-- Plain English Concept Explanation -->
+      <div id="conceptBox" class="concept-explanation">
+        In C++, std::cout acts like a screen. We need arrows to push our text onto that screen.
+      </div>
+
+      <!-- Interactive C++ Code Block -->
+      <div id="codeBlock" class="code-container">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Floating Code Hint Tooltip -->
+      <div id="codeTooltip" class="code-tooltip">Hint text</div>
+
+      <!-- 3D Multiple Choice Option Buttons -->
+      <div id="optionsGrid" class="options-grid">
+        <!-- Buttons created dynamically by JavaScript -->
+      </div>
+    </main>
+
+    <!-- Module Complete Celebration View -->
+    <section id="moduleCompleteView" class="modal-view">
+      <div class="modal-badge-icon success">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <h2 class="modal-title">Module Complete!</h2>
+      <p id="completedModuleTitle" class="modal-desc">You mastered this C++ module!</p>
+
+      <div class="stats-summary-grid">
+        <div class="summary-card">
+          <span class="summary-label">Cards Completed</span>
+          <span id="completedCardsCount" class="summary-val">4/4</span>
+        </div>
+        <div class="summary-card">
+          <span class="summary-label">Streak Status</span>
+          <span id="completedStreakVal" class="summary-val">13 Days</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 360px;">
+        <button id="nextModuleBtn" class="action-btn continue-correct" type="button">Next Module</button>
+        <button id="reviewModuleBtn" class="option-btn" type="button" style="border-radius: var(--radius-lg);">Review Module</button>
+      </div>
+    </section>
+
+    <!-- Out of Hearts View -->
+    <section id="outOfHeartsView" class="modal-view">
+      <div class="modal-badge-icon danger">
+        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </div>
+      <h2 class="modal-title">Out of Hearts!</h2>
+      <p class="modal-desc">Mistakes are how we learn C++. Refill your hearts to 5 now and keep practicing.</p>
+
+      <div style="width: 100%; max-width: 360px; margin-top: 10px;">
+        <button id="refillHeartsBtn" class="action-btn continue-correct" type="button">Refill Hearts (5)</button>
+      </div>
+    </section>
+
+    <!-- Fixed Bottom Sheet & Action Controls -->
+    <footer id="bottomSheet" class="bottom-sheet">
+      <div class="bottom-sheet-content">
+        <!-- Dynamic Feedback Drawer -->
+        <div id="feedbackDrawer" class="feedback-drawer">
+          <div class="feedback-icon-wrap">
+            <svg id="feedbackIcon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <div class="feedback-text-wrap">
+            <div id="feedbackTitle" class="feedback-title">Correct!</div>
+            <div id="feedbackDesc" class="feedback-desc">Great job picking the right answer.</div>
+          </div>
+        </div>
+
+        <!-- 3D Primary Action Button (CHECK / CONTINUE) -->
+        <button id="actionBtn" class="action-btn" type="button" disabled>CHECK</button>
+      </div>
+    </footer>
+
+    <!-- Curriculum Modules Drawer Modal -->
+    <div id="moduleDrawer" class="drawer-backdrop">
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <h3 class="drawer-title">C++ Curriculum Modules</h3>
+          <button id="closeDrawerBtn" class="icon-btn" type="button" aria-label="Close Modules">
+            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          </button>
+        </div>
+        <div id="moduleList" class="drawer-body">
+          <!-- Populated dynamically with all 7 modules -->
+        </div>
+      </div>
+    </div>
+
+    <!-- In-Page Reset Progress Confirmation Modal -->
+    <div id="resetModal" class="drawer-backdrop center-modal">
+      <div class="center-modal-panel">
+        <h3 style="font-size: 20px; font-weight: 900; color: var(--color-text-main);">Reset Progress?</h3>
+        <p style="font-size: 14px; font-weight: 600; color: var(--color-text-muted); line-height: 1.5;">
+          This will reset your hearts back to 5, reset your streak to 1, and clear completed module records.
+        </p>
+        <div style="display: flex; gap: 10px;">
+          <button id="cancelResetBtn" class="option-btn" type="button" style="flex: 1; padding: 12px; font-size: 14px;">Cancel</button>
+          <button id="confirmResetBtn" class="action-btn continue-error" type="button" style="flex: 1; padding: 12px; font-size: 14px;">Reset</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Main JavaScript Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
